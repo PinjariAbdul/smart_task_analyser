@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Priority Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Task Priority Manager</h1>
+            <p>Organize and prioritize your tasks effectively</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <h2>New Task</h2>
+                <form id="task-form">
+                    <div class="form-group">
+                        <label for="title">Task Title</label>
+                        <input type="text" id="title" required placeholder="Enter task title">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="due-date">Due Date</label>
+                            <input type="date" id="due-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="estimated-hours">Hours Needed</label>
+                            <input type="number" id="estimated-hours" min="0.5" step="0.5" required placeholder="e.g., 2.5">
+                        </div>
+                        <div class="form-group">
+                            <label for="importance">Importance (1-10)</label>
+                            <input type="number" id="importance" min="1" max="10" required placeholder="Rate 1-10">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="dependencies">Dependencies</label>
+                        <input type="text" id="dependencies" placeholder="task1, task2 (comma separated)">
+                    </div>
+                    <button type="submit">Add Task</button>
+                </form>
+
+                <div class="bulk-input">
+                    <h3>Import Tasks</h3>
+                    <textarea id="json-input" placeholder='Paste JSON tasks here, e.g.:
+[
+  {
+    "id": "task1",
+    "title": "Fix login bug",
+    "due_date": "2025-11-30",
+    "estimated_hours": 3,
+    "importance": 8,
+    "dependencies": []
+  }
+]'></textarea>
+                    <button id="add-json-tasks">Import JSON</button>
+                </div>
+            </section>
+
+            <section class="strategy-section">
+                <h2>Prioritization Method</h2>
+                <div class="form-group">
+                    <label for="strategy">Method:</label>
+                    <select id="strategy">
+                        <option value="smart_balance">Balanced Approach</option>
+                        <option value="fastest">Quick Wins</option>
+                        <option value="impact">High Impact</option>
+                        <option value="deadline">Urgent First</option>
+                    </select>
+                </div>
+                <button id="analyze-btn">Prioritize Tasks</button>
+            </section>
+
+            <section class="results-section">
+                <h2>Prioritized Tasks</h2>
+                <div id="results-container">
+                    <p id="no-results-message">Add tasks and click "Prioritize Tasks" to see results.</p>
+                    <div id="results-list"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
